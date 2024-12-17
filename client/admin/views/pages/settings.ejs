@@ -1,0 +1,49 @@
+<%- await include('../partials/header.ejs') %>
+<%- await include('../partials/sidebar.ejs') %>
+<%- await include('../partials/popup.ejs') %>
+
+<% const settings = await getSettings() %>
+
+<main class="admin">
+    <div class="admin__inner">
+        <div class="admin-card">
+            <div class="admin-card__inner">
+                <div class="admin-card__head">
+                    <h2>Entity Types</h2>
+                    <button data-popup="edit" onclick="createEntityType(event)" class="btn">Create</button>
+                </div>
+                <div class="admin-card__body">
+                    <div class="entity-types-table admin-card__table"><%- await include('../partials/entity-type/table.ejs') %></div>
+                </div>
+            </div>
+        </div>
+        <div class="admin-card">
+            <div class="admin-card__inner">
+                <div class="admin-card__head">
+                    <h2>General</h2>
+                </div>
+                <div class="admin-card__body">
+                    <% if (settings) { %>
+                    <form onsubmit="editSettings(event, this)" class="admin-card__form">
+                        <% for (const section in settings) { %>
+                        <h2 class="form-title"><%= section %></h2>
+                        <% for (const setting of settings[section]) { %>
+                        <label class="form-row">
+                            <div class="form-column">
+                                <span class="form-caption"><%= setting.setting_name %></span>
+                                <textarea name="settings[<%= setting.setting_id %>|<%= setting.setting_name %>]" placeholder="<%= setting.setting_name %>"><%= setting.setting_name !== 'password' ? setting.setting_value : '' %></textarea>
+                            </div>
+                        </label>
+                        <% } %>
+                        <% } %>
+                        <div class="admin-card__btns">
+                            <button type="submit" class="btn">Submit</button>
+                            <button onclick="createSitemap(event)" class="btn">Create Sitemap</button>
+                        </div>
+                    </form>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

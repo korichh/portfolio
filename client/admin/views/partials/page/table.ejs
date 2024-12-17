@@ -1,0 +1,32 @@
+<% const pages = await getPages() %>
+
+<% if (pages.length) { %>
+<table>
+    <thead>
+        <tr>
+            <th width="40px"></th>
+            <th width="40px">id</th>
+            <th>url</th>
+            <th>title</th>
+            <th>descr</th>
+            <th>content</th>
+            <th>view</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (const page of pages) { %>
+        <tr data-popup="edit" onclick="getPage(event, '<%= page.page_id %>')">
+            <td onclick="deletePage(event, '<%= page.page_id %>')" class="_center"><i class="icon-close"></i></td>
+            <td><%= trunc(page.page_id) %></td>
+            <td><%= trunc(page.page_url) %></td>
+            <td><%= trunc(page.page_title) %></td>
+            <td><%= trunc(page.page_descr) %></td>
+            <td><%= trunc(page.page_content) %></td>
+            <td><%= trunc(page.page_view) %></td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } else { %>
+<p>No pages available</p>
+<% } %>

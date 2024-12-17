@@ -1,0 +1,37 @@
+<% const [ projects, pagination ] = await getEntities("project", query) %>
+
+<% if (projects.length) { %>
+<div class="projects__list projects-list">
+    <% for (const project of projects) { %>
+    <% if (project) { %>
+    <div class="projects-list__item project-card">
+        <div class="project-card__inner">
+            <div class="project-card__image"><img src="<%= getImageSrc(project, "sm") %>" alt="<%= project.entity_name %> project" loading="lazy" width="374" height="365"></div>
+            <button data-popup="project" onclick="getProject(event, '<%= project.entity_id %>')" aria-label="View Details" class="project-card__overlay">
+                <div class="btn project-card__button">View Details</div>
+            </button>
+            <div class="project-card__bottom">
+                <div class="project-card__content">
+                    <div class="project-card__category"><%= project.taxonomies.category ? project.taxonomies.category[0] : "Project" %></div>
+                    <div class="project-card__name"><%= project.entity_name %></div>
+                </div>
+                <div class="project-card__links">
+                    <% if (project.attributes.live_url) { %><a href="<%= project.attributes.live_url %>" title="Live Preview" target="_blank" rel="nofollow" class="project-card__link"><i class="icon-arrow-diag"></i></a><% } %>
+                    <% if (project.attributes.source_url) { %><a href="<%= project.attributes.source_url %>" title="Source Code" target="_blank" rel="nofollow" class="project-card__link"><i class="icon-code"></i></a><% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    <% } %>
+</div>
+<% if (pagination && pagination.total > 1) { %>
+<div class="pagination" onclick="updateQueryPage(event, this, 'project')">
+    <% for (let i = 1; i <= pagination.total; i++) { %>
+    <% if (i === pagination.current) { %><span class="pagination__elem pagination__current"><%= i %></span><% } else { %><a class="pagination__elem" href="?page=<%= i %>" title="Page <%= i %>" rel="nofollow"><%= i %></a><% } %>
+    <% } %>
+</div>
+<% } %>
+<% } else { %>
+<p>No projects available</p>
+<% } %>

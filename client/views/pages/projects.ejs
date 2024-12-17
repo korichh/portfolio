@@ -1,0 +1,13 @@
+<section class="projects">
+    <div class="container">
+        <div class="projects__inner">
+            <div class="projects__head">
+                <h1 class="title_prim">Projects</h1>
+                <button class="btn projects__filters-btn" data-sidebar="project"><i class="icon-filter"></i><span>Filters</span></button>
+            </div>
+            <div class="entities-container">
+                <%- await include("../partials/project/list.ejs") %>
+            </div>
+        </div>
+    </div>
+</section>

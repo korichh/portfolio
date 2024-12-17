@@ -1,0 +1,26 @@
+<% const entityTypes = await getEntityTypes() %>
+
+<% if (entityTypes.length) { %>
+<table>
+    <thead>
+        <tr>
+            <th width="40px"></th>
+            <th width="40px">id</th>
+            <th>name</th>
+            <th>attributes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (const entityType of entityTypes) { %>
+        <tr data-popup="edit" onclick="getEntityType(event, '<%= entityType.entity_type_id %>')">
+            <td onclick="deleteEntityType(event, '<%= entityType.entity_type_id %>')" class="_center"><i class="icon-close"></i></td>
+            <td><%= trunc(entityType.entity_type_id) %></td>
+            <td><%= trunc(entityType.entity_type_name) %></td>
+            <td><%= trunc(entityType.Attributes.map(attr => attr.attribute_name).join(", ")) %></td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } else { %>
+<p>No entity types available</p>
+<% } %>

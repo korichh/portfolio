@@ -1,0 +1,30 @@
+<%- await include('../partials/header.ejs') %>
+<%- await include('../partials/sidebar.ejs') %>
+<%- await include('../partials/popup.ejs') %>
+
+<main class="admin">
+    <div class="admin__inner">
+        <div class="admin-card">
+            <div class="admin-card__inner">
+                <div class="admin-card__head">
+                    <h2><%= capital(entity_type_name) %></h2>
+                    <button data-popup="edit" onclick="createEntity(event, '<%= entity_type_id %>', '<%= entity_type_name %>')" class="btn">Create</button>
+                </div>
+                <div class="admin-card__body">
+                    <div class="entities-table admin-card__table"><%- await include('../partials/entity/table.ejs') %></div>
+                </div>
+            </div>
+        </div>
+        <div class="admin-card">
+            <div class="admin-card__inner">
+                <div class="admin-card__head">
+                    <h2>Taxonomies</h2>
+                    <button data-popup="edit" onclick="createTaxonomy(event, '<%= entity_type_id %>')" class="btn">Create</button>
+                </div>
+                <div class="admin-card__body">
+                    <div class="taxonomies-table admin-card__table"><%- await include('../partials/taxonomy/table.ejs') %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

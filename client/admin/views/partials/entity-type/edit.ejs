@@ -1,0 +1,35 @@
+<% const entityType = await getEntityType(entity_type_id) %>
+
+<% if (entityType) { %>
+<div class="edit-block">
+    <div class="edit-block__inner">
+        <div class="edit-block__head">
+            <div class="edit-block__title">Edit Entity Type</div>
+            <button data-close class="edit-block__close"><i class="icon-close"></i></button>
+        </div>
+        <div class="edit-block__body">
+            <form onsubmit="editEntityType(event, this, '<%= entityType.entity_type_id %>')" class="admin-card__form">
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">Name:</span>
+                        <textarea placeholder="Entity type name" name="entity_type_name"><%= entityType.entity_type_name %></textarea>
+                    </div>
+                </label>
+                <h2 class="form-title">Attributes</h2>
+                <div class="attributes-list elems-list">
+                    <% if (entityType.Attributes) { %>
+                    <% for (const attr of entityType.Attributes) { %>
+                    <div class="elems-item">
+                        <button onclick="deleteEntityAttribute(event, this, '<%= attr.attribute_id %>')"><i class="icon-close"></i></button>
+                        <textarea name="attributes[<%= attr.attribute_id %>]"><%= attr.attribute_name %></textarea>
+                    </div>
+                    <% } %>
+                    <% } %>
+                </div>
+                <button onclick="createEntityAttribute(event, '<%= entityType.entity_type_id %>')" class="btn btn_small">Add One</button>
+                <button data-close type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<% } %>

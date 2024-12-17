@@ -1,0 +1,48 @@
+<% const taxonomies = await getTaxonomies("project") %>
+
+<div class="project-filters">
+    <div class="project-filters__inner">
+        <div class="project-filters__head">
+            <div class="project-filters__title">Filters</div>
+            <button data-close class="project-filters__close" aria-label="Close Filters"><i class="icon-close"></i></button>
+        </div>
+        <div class="project-filters__body">
+            <form onsubmit="updateQueryFilters(event, this, 'project')" class="project-filters__form filters-form">
+                <label class="filters-form__column filters-form__search">
+                    <span class="filters-form__caption">Project name:</span>
+                    <span class="input-search">
+                        <input type="text" name="s" placeholder="Search for..." value="<%= query.s %>">
+                    </span>
+                </label>
+                <% if (taxonomies.length) { %>
+
+                <% for (const tax of taxonomies) { %>
+                <% if (tax.taxonomy_name === "category") { %>
+                <label class="filters-form__column filters-form__category">
+                    <span class="filters-form__caption"><%= capital(tax.taxonomy_name) %>:</span>
+                    <span class="input-select">
+                        <select name="terms[]">
+                            <option value="">All</option>
+                            <% tax.TaxonomyTerms.forEach(term => { %><option <%= isJSON(query.terms, "array") && JSON.parse(query.terms).includes(String(term.taxonomy_term_id)) ? "selected" : "" %> value="<%= term.taxonomy_term_id %>"><%= term.taxonomy_term_name %></option><% }) %>
+                        </select>
+                        <i class="icon-arrow"></i>
+                    </span>
+                </label>
+                <% } else { %>
+                <div class="filters-form__column">
+                    <span class="filters-form__caption"><%= capital(tax.taxonomy_name) %>:</span>
+                    <div class="filters-form__tags">
+                        <% tax.TaxonomyTerms.forEach(term => { %>
+                        <label class="btn input-checkbox"><input <%= isJSON(query.terms, "array") && JSON.parse(query.terms).includes(String(term.taxonomy_term_id)) ? "checked" : "" %> type="checkbox" name="terms[]" value="<%= term.taxonomy_term_id %>"><span><%= term.taxonomy_term_name %></span></label>
+                        <% }) %>
+                    </div>
+                </div>
+                <% } %>
+                <% } %>
+
+                <% } %>
+                <button data-close type="submit" class="btn filters-form__btn" aria-label="Submit Filters">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

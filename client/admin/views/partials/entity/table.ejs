@@ -1,0 +1,30 @@
+<% const entities = await getEntities(entity_type_id) %>
+
+<% if (entities.length) { %>
+<table>
+    <thead>
+        <tr>
+            <th width="40px"></th>
+            <th width="40px">id</th>
+            <th>name</th>
+            <th>content</th>
+            <th>image</th>
+            <th>date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (const entity of entities) { %>
+        <tr data-popup="edit" onclick="getEntity(event, '<%= entity_type_id %>', '<%= entity_type_name %>', '<%= entity.entity_id %>')">
+            <td onclick="deleteEntity(event, '<%= entity_type_id %>', '<%= entity_type_name %>', '<%= entity.entity_id %>')" class="_center"><i class="icon-close"></i></td>
+            <td><%= trunc(entity.entity_id) %></td>
+            <td><%= trunc(entity.entity_name) %></td>
+            <td><%= trunc(entity.entity_content) %></td>
+            <td><%= trunc(entity.entity_image) %></td>
+            <td><%= formatDate(entity.entity_date) %></td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } else { %>
+<p>No <%= entity_type_name %> available</p>
+<% } %>

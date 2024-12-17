@@ -1,0 +1,43 @@
+:root {
+    --color-black: #000;
+    --color-white: #fff;
+    --color-darkwhite: #eee;
+    --color-bluewhite: #fafbff;
+    --color-lightgrey: #b5b7c0;
+    --color-grey: #9197b3;
+    --color-blue: #5932ea;
+    --color-lightblue: #6970f5;
+    --bg-main: var(--color-bluewhite);
+    --bg-dark: rgba(0, 0, 0, 0.5);
+    --font-family: "Poppins", sans-serif;
+    --box-shadow: 0 10px 60px rgba(226, 236, 249, 0.5);
+    --width-sidebar: 300px;
+    --height-header: 60px;
+}
+@media (max-width: 1199.98px) {
+    :root {
+        --width-sidebar: 270px;
+    }
+}
+
+@font-face {
+    font-display: swap;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/poppins400.woff") format("woff");
+}
+@font-face {
+    font-display: swap;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    src: url("../fonts/poppins500.woff") format("woff");
+}
+@font-face {
+    font-display: swap;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    src: url("../fonts/poppins600.woff") format("woff");
+}

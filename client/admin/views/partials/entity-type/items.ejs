@@ -1,0 +1,8 @@
+<% const entityTypes = await getEntityTypes() %>
+
+<% if (entityTypes.length) { %>
+<% for (const entityType of entityTypes) { %>
+<% if (!entityType.entity_type_name) { continue } %>
+<li class="menu-item"><a href="?entity=<%= entityType.entity_type_name %>"><i class="icon-projects"></i><span><%= capital(entityType.entity_type_name) %></span></a></li>
+<% } %>
+<% } %>

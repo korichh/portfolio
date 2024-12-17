@@ -1,0 +1,36 @@
+<% const project = await getEntity(entity_id) %>
+
+<% if (project) { %>
+<div class="project-item">
+    <div class="project-item__inner">
+        <div class="project-item__head">
+            <div class="project-item__title"><%= project.entity_name %></div>
+            <button data-close class="project-item__close" aria-label="Close Project Popup"><i class="icon-close"></i></button>
+        </div>
+        <div class="project-item__body">
+            <div class="project-item__brief">
+                <div class="project-item__category">
+                    <span class="project-item__category-caption">Category:</span>
+                    <span class="project-item__category-name"><%= project.taxonomies.category ? project.taxonomies.category[0] : "Project" %></span>
+                </div>
+                <div class="project-item__tags">
+                    <span class="project-item__tags-caption">Tags:</span>
+                    <div class="project-item__tags-list"><% project.taxonomies.tag ? project.taxonomies.tag.forEach(term => { %><span><%= term %></span><% }) : "" %></div>
+                </div>
+                <div class="project-item__links">
+                    <span class="project-item__links-caption">Links:</span>
+                    <div class="project-item__links-list">
+                        <% if (project.attributes.live_url) { %><a href="<%= project.attributes.live_url %>" title="Live Preview" target="_blank" rel="nofollow" class="project-item__link"><i class="icon-arrow-diag"></i><span>Live Preview</span></a><% } %>
+                        <% if (project.attributes.source_url) { %><a href="<%= project.attributes.source_url %>" title="Source Code" target="_blank" rel="nofollow" class="project-item__link"><i class="icon-code"></i><span>Source Code</span></a><% } %>
+                        <a onclick="copyLink(event, this, 'Copied!')" href="#" title="Share Link" class="project-item__link"><i class="icon-link"></i><span>Share Link</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-item__content">
+                <div class="project-item__image"><img src="<%= getImageSrc(project) %>" alt="<%= project.entity_name %> project" loading="lazy" width="374" height="365"></div>
+                <% if (project.entity_content) { %><div class="project-item__descr content"><%- project.entity_content %></div><% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<% } %>

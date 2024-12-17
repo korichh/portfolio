@@ -1,0 +1,26 @@
+<% const taxonomies = await getTaxonomies(entity_type_id) %>
+
+<% if (taxonomies.length) { %>
+<table>
+    <thead>
+        <tr>
+            <th width="40px"></th>
+            <th width="40px">id</th>
+            <th>name</th>
+            <th>terms</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (const tax of taxonomies) { %>
+        <tr data-popup="edit" onclick="getTaxonomy(event, '<%= entity_type_id %>', '<%= tax.taxonomy_id %>')">
+            <td onclick="deleteTaxonomy(event, '<%= entity_type_id %>', '<%= tax.taxonomy_id %>')" class="_center"><i class="icon-close"></i></td>
+            <td><%= trunc(tax.taxonomy_id) %></td>
+            <td><%= trunc(tax.taxonomy_name) %></td>
+            <td><%= trunc(tax.TaxonomyTerms.map(term => term.taxonomy_term_name).join(", ")) %></td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } else { %>
+<p>No taxonomies available</p>
+<% } %>

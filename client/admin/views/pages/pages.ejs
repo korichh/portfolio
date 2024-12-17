@@ -1,0 +1,19 @@
+<%- await include('../partials/header.ejs') %>
+<%- await include('../partials/sidebar.ejs') %>
+<%- await include('../partials/popup.ejs') %>
+
+<main class="admin">
+    <div class="admin__inner">
+        <div class="admin-card">
+            <div class="admin-card__inner">
+                <div class="admin-card__head">
+                    <h2>Pages</h2>
+                    <button data-popup="edit" onclick="createPage(event)" class="btn">Create</button>
+                </div>
+                <div class="admin-card__body">
+                    <div class="pages-table admin-card__table"><%- await include('../partials/page/table.ejs') %></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

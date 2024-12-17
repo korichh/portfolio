@@ -1,0 +1,88 @@
+<% const entity = await getEntity(entity_id) %>
+
+<% if (entity) { %>
+<% const attributes = entity.EntityType.Attributes %>
+<% const taxonomies = entity.EntityType.Taxonomies %>
+<div class="edit-block">
+    <div class="edit-block__inner">
+        <div class="edit-block__head">
+            <div class="edit-block__title">Edit Entity</div>
+            <button data-close class="edit-block__close"><i class="icon-close"></i></button>
+        </div>
+        <div class="edit-block__body">
+            <form onsubmit="editEntity(event, this, '<%= entity_type_id %>', '<%= entity_type_name %>', '<%= entity.entity_id %>')" class="admin-card__form">
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">Name:</span>
+                        <textarea placeholder="<%= entity_type_name %> name" name="entity_name"><%= entity.entity_name %></textarea>
+                    </div>
+                </label>
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">Content:</span>
+                        <textarea placeholder="<%= entity_type_name %> content" name="entity_content"><%= entity.entity_content %></textarea>
+                    </div>
+                </label>
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">Image:</span>
+                        <div class="form-image <%= entity.entity_image ? '_active' : '' %>">
+                            <input type="file" name="entity_image" accept=".jpg,.jpeg,.png,.webp" class="form-image__input" data-modified="0">
+                            <div class="form-image__preview">
+                                <button class="form-image__delete"><i class="icon-close"></i></button>
+                                <img src="<%= entity.entity_image ? `/img/entity-type/${entity_type_name}/${entity.entity_image}` : '#' %>" loading="lazy" class="form-image__img">
+                            </div>
+                        </div>
+                    </div>
+                </label>
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">Date:</span>
+                        <textarea placeholder="<%= entity_type_name %> date" name="entity_date"><%= formatDate(entity.entity_date) %></textarea>
+                    </div>
+                </label>
+
+                <% if (attributes.length) { %>
+                <h2 class="form-title">Attributes</h2>
+
+                <% for (const attr of attributes) { %>
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption"><%= attr.attribute_name %>:</span>
+                        <textarea placeholder="<%= attr.attribute_name %>" name="attributes[<%= attr.attribute_id %>]"><%= attr.AttributeValues[0] ? attr.AttributeValues[0].attribute_value_text : '' %></textarea>
+                    </div>
+                </label>
+                <% } %>
+
+                <% } %>
+
+                <% if (taxonomies.length) { %>
+                <h2 class="form-title">Taxonomies</h2>
+
+                <% for (const tax of taxonomies) { %>
+                <% if (tax.TaxonomyTerms.length) { %>
+                <h3 class="form-title"><%= tax.taxonomy_name %></h3>
+                <div class="form-row">
+                    <div class="form-column">
+                        <div class="form-checkboxes">
+
+                            <% for (const term of tax.TaxonomyTerms) { %>
+                            <label class="form-checkboxes__item">
+                                <input <%= term.EntityTerms[0] ? 'checked' : '' %> type="checkbox" name="taxonomy_terms[<%= term.taxonomy_term_id %>]">
+                                <span><%= term.taxonomy_term_name %></span>
+                            </label>
+                            <% } %>
+
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <% } %>
+
+                <% } %>
+                <button data-close type=" submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<% } %>

@@ -1,0 +1,5 @@
+<div class="sidebar">
+    <% if (currentUri === "/projects") { %>
+    <div class="sidebar__content sidebar__project"><%- await include("./project/filters.ejs") %></div>
+    <% } %>
+</div>

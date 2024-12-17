@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="en">
+
+<%- await include("./partials/head.ejs") %>
+
+<body>
+    <%- await include("./partials/preloader.ejs") %>
+
+    <%- await include("./partials/header.ejs") %>
+    <main class="main">
+        <%- await include(`./pages/${page.page_view}.ejs`) %>
+    </main>
+    <%- await include("./partials/footer.ejs") %>
+
+    <%- await include("./partials/sidebar.ejs") %>
+    <%- await include("./partials/popup.ejs") %>
+    <%- await include("./partials/loader.ejs") %>
+</body>
+
+</html>

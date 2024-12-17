@@ -1,0 +1,55 @@
+<section class="contact">
+    <div class="container">
+        <div class="contact__inner">
+            <div class="contact__head">
+                <h1 class="title_prim">Contact Me</h1>
+            </div>
+            <div class="contact__body">
+                <form onsubmit="sendMessage(event, this, 'Success! I will be in touch soon.')" class="contact-form contact__form">
+                    <label class="contact-form__column">
+                        <span class="contact-form__caption">Name:</span>
+                        <input required minlength="3" placeholder="John Doe" type="text" name="name">
+                    </label>
+                    <label class="contact-form__column">
+                        <span class="contact-form__caption">Email:</span>
+                        <input required minlength="3" placeholder="johndoe@gmail.com" type="email" name="email">
+                    </label>
+                    <label class="contact-form__column">
+                        <span class="contact-form__caption">Message:</span>
+                        <textarea required minlength="3" placeholder="I have some message for you..." name="message"></textarea>
+                    </label>
+                    <button type="submit" class="btn contact-form__btn">Submit</button>
+                </form>
+                <div class="contact-bar contact__bar">
+                    <h2 class="contact-bar__title">Get In Touch</h2>
+                    <div class="contact-list contact-bar__list">
+                        <label class="contact-list__item">
+                            <i class="icon-location"></i>
+                            <span>Kharkiv, Ukraine</span>
+                        </label>
+                        <a href="tel:+380957573179" target="_blank" rel="nofollow" class="contact-list__item">
+                            <i class="icon-phone"></i>
+                            <span>+380 95 757 3179</span>
+                        </a>
+                        <a href="mailto:akopyankor@gmail.com" target="_blank" rel="nofollow" class="contact-list__item">
+                            <i class="icon-mail"></i>
+                            <span>akopyankor@gmail.com</span>
+                        </a>
+                        <a href="https://t.me/korichh" target="_blank" rel="nofollow" class="contact-list__item">
+                            <i class="icon-telegram"></i>
+                            <span>Telegram</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/koriun-akopian" target="_blank" rel="nofollow" class="contact-list__item">
+                            <i class="icon-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://github.com/korichh" target="_blank" rel="nofollow" class="contact-list__item">
+                            <i class="icon-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

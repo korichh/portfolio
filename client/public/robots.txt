@@ -1,0 +1,4 @@
+User-agent: *
+
+Host: https://korichh.com
+Sitemap: https://korichh.com/sitemap.xml

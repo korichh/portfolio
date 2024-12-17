@@ -1,0 +1,39 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= page.page_title %></title>
+    <meta name="description" content="<%= page.page_descr %>">
+
+    <link rel="canonical" href="<%= `${protocol}://${hostname}${currentUri}` %>">
+
+    <meta property="og:locale" content="en">
+    <meta property="og:site_name" content="Web Developer Portfolio">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="<%= page.page_title %>">
+    <meta property="og:description" content="<%= page.page_descr %>">
+    <meta property="og:url" content="<%= `${protocol}://${hostname}${currentUri}` %>">
+    <meta property="og:image" content="<%= `${protocol}://${hostname}/preview.png` %>">
+    <meta property="og:image:secure_url" content="<%= `${protocol}://${hostname}/preview.png` %>">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= page.page_title %>">
+    <meta name="twitter:description" content="<%= page.page_descr %>">
+    <meta name="twitter:image" content="<%= `${protocol}://${hostname}/preview.png` %>">
+
+    <link rel="shortcut icon" href="<%= `${protocol}://${hostname}/favicon.png` %>" type="image/png">
+
+    <link rel="stylesheet" href="/css/libs/icomoon.css">
+    <% if (currentUri === "/") { %>
+    <link rel="stylesheet" href="/css/libs/swiper.css"><% } %>
+    <link rel="stylesheet" href="/css/main.css">
+
+    <script defer src="/js/functions.js"></script>
+    <script defer src="/js/view.js"></script>
+    <% if (currentUri === "/") { %>
+    <script defer src="/js/libs/swiper.js"></script><% } %>
+    <script defer src="/js/main.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HM1357CSJ3"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-HM1357CSJ3');</script>
+</head>

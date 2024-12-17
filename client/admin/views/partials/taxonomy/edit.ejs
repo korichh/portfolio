@@ -1,0 +1,35 @@
+<% const taxonomy = await getTaxonomy(taxonomy_id) %>
+
+<% if (taxonomy) { %>
+<div class="edit-block">
+    <div class="edit-block__inner">
+        <div class="edit-block__head">
+            <div class="edit-block__title">Edit Taxonomy</div>
+            <button data-close class="edit-block__close"><i class="icon-close"></i></button>
+        </div>
+        <div class="edit-block__body">
+            <form onsubmit="editTaxonomy(event, this, '<%= entity_type_id %>', '<%= taxonomy.taxonomy_id %>')" class="admin-card__form">
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">Name:</span>
+                        <textarea placeholder="Taxonomy name" name="taxonomy_name"><%= taxonomy.taxonomy_name %></textarea>
+                    </div>
+                </label>
+                <h2 class="form-title">Taxonomy Terms</h2>
+                <div class="taxonomy-terms-list elems-list">
+                    <% if (taxonomy.TaxonomyTerms.length) { %>
+                    <% for (const term of taxonomy.TaxonomyTerms) { %>
+                    <div class="elems-item">
+                        <button onclick="deleteTaxonomyTerm(event, this, '<%= entity_type_id %>', '<%= term.taxonomy_term_id %>')"><i class="icon-close"></i></button>
+                        <textarea name="taxonomy_terms[<%= term.taxonomy_term_id %>]"><%= term.taxonomy_term_name %></textarea>
+                    </div>
+                    <% } %>
+                    <% } %>
+                </div>
+                <button onclick="createTaxonomyTerm(event, '<%= entity_type_id %>', '<%= taxonomy.taxonomy_id %>')" class="btn btn_small">Add One</button>
+                <button data-close type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<% } %>

@@ -1,0 +1,14 @@
+<aside class="sidebar">
+    <div class="sidebar__inner">
+        <a href="/admin" class="admin-logo sidebar__logo"><i class="icon-settings"></i><span><span>Admin Panel</span><small class="admin-version">v.01</small></span></a>
+        <nav class="admin-nav sidebar__nav">
+            <ul class="menu">
+                <li class="menu-item"><a href="/" target="_blank"><i class="icon-arrow"></i><span>Home Page</span></a></li>
+                <li class="menu-item"><a href="?dashboard"><i class="icon-dashboard"></i><span>Dashboard</span></a></li>
+                <li class="menu-item"><a href="?pages"><i class="icon-pages"></i><span>Pages</span></a></li>
+                <ul class="entity-type-items"><%- await include("./entity-type/items.ejs") %></ul>
+                <li class="menu-item"><a href="?settings"><i class="icon-settings"></i><span>Settings</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</aside>

@@ -1,0 +1,47 @@
+<% const page = await getPage(page_id) %>
+
+<% if (page) { %>
+<div class="edit-block">
+    <div class="edit-block__inner">
+        <div class="edit-block__head">
+            <div class="edit-block__title">Edit Page</div>
+            <button data-close class="edit-block__close"><i class="icon-close"></i></button>
+        </div>
+        <div class="edit-block__body">
+            <form onsubmit="editPage(event, this, '<%= page.page_id %>')" class="admin-card__form">
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">Url:</span>
+                        <textarea placeholder="/page" name="page_url"><%= page.page_url %></textarea>
+                    </div>
+                </label>
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">Title:</span>
+                        <textarea placeholder="page title" name="page_title"><%= page.page_title %></textarea>
+                    </div>
+                </label>
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">Descr:</span>
+                        <textarea placeholder="page description" name="page_descr"><%= page.page_descr %></textarea>
+                    </div>
+                </label>
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">Content:</span>
+                        <textarea placeholder="html code" name="page_content"><%= page.page_content %></textarea>
+                    </div>
+                </label>
+                <label class="form-row">
+                    <div class="form-column">
+                        <span class="form-caption">View:</span>
+                        <textarea placeholder="view name" name="page_view"><%= page.page_view %></textarea>
+                    </div>
+                </label>
+                <button data-close type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<% } %>
