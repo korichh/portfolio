@@ -1,11 +1,12 @@
 import "dotenv/config"
 import { Request, Response, NextFunction } from "express"
 import { EntityType, Setting } from "../../models"
+import vars from "../../config/vars"
 
 const mainController = {
     pass: (req: Request, res: Response, next: NextFunction): any => {
         const key = Object.keys(req.query)[0]
-        const passKey = process.env.PASSKEY
+        const passKey = vars.passkey
 
         if (req.session.passKey !== passKey && key !== passKey) return res.status(302).redirect("/")
 

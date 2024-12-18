@@ -1,21 +1,14 @@
 import "dotenv/config"
 import { Sequelize } from "sequelize"
-
-const DB_OPTIONS = {
-    DB_NAME: process.env.DB_NAME || "",
-    DB_USER: process.env.DB_USER || "",
-    DB_PASSWORD: process.env.DB_PASSWORD || "",
-    DB_HOST: process.env.DB_HOST || "",
-    DB_PORT: Number(process.env.DB_PORT) || 3306,
-}
+import vars from "./vars"
 
 export default new Sequelize(
-    DB_OPTIONS.DB_NAME,
-    DB_OPTIONS.DB_USER,
-    DB_OPTIONS.DB_PASSWORD,
+    vars.db_name,
+    vars.db_user,
+    vars.db_password,
     {
-        host: DB_OPTIONS.DB_HOST,
-        port: DB_OPTIONS.DB_PORT,
+        host: vars.db_host,
+        port: vars.db_port,
         dialect: "mysql",
         logging: false
     }

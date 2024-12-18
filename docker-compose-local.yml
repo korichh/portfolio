@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-c
+    ports:
+      - 127.0.0.1:${DB_PORT}:3306
+    networks:
+      - app-network
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+
+  adminer:
+    image: adminer:4.8.1-standalone
+    container_name: adminer-c
+    ports:
+      - 127.0.0.1:${AD_PORT}:8080
+    networks:
+      - app-network
+    restart: always
+
+volumes:
+  mysql-data:
+    name: app-mysql-data
+
+networks:
+  app-network:
+    driver: bridge
