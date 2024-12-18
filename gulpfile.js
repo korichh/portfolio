@@ -49,7 +49,7 @@ const scss = {
         watch: "client/src/scss/**/*"
     },
     clean: () => del(`${scss.path.dist}/*`),
-    build: () => gulp.src(scss.path.src).pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError)).pipe(gulp.dest(scss.path.dist)),
+    build: () => gulp.src(scss.path.src).pipe(sass({ outputStyle: "compressed", silenceDeprecations: ["legacy-js-api"] }).on("error", sass.logError)).pipe(gulp.dest(scss.path.dist)),
     watch: (done) => { gulp.watch(scss.path.watch, gulp.series(scss.clean, scss.build, project.start)); done() },
 }
 
@@ -60,7 +60,7 @@ const scssAdmin = {
         watch: "client/admin/src/scss/**/*"
     },
     clean: () => del(`${scssAdmin.path.dist}/*`),
-    build: () => gulp.src(scssAdmin.path.src).pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError)).pipe(gulp.dest(scssAdmin.path.dist)),
+    build: () => gulp.src(scssAdmin.path.src).pipe(sass({ outputStyle: "compressed", silenceDeprecations: ["legacy-js-api"] }).on("error", sass.logError)).pipe(gulp.dest(scssAdmin.path.dist)),
     watch: (done) => { gulp.watch(scssAdmin.path.watch, gulp.series(scssAdmin.clean, scssAdmin.build, project.start)); done() },
 }
 

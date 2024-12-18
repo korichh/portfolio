@@ -1,5 +1,5 @@
-@import "./imports/reset.scss";
-@import "./imports/options.scss";
+@use "./imports/reset.scss" as *;
+@use "./imports/options.scss" as *;
 
 body {
     font-family: var(--font-family);

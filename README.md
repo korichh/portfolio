@@ -1,4 +1,4 @@
-# devops-portfolio
+# portfolio
 
 In this project, I'll walk you through how I deployed my [Full Stack Portfolio Website](https://korichh.com), the tools and technologies I used, and the architecture I implemented to make it all work seamlessly.
 
