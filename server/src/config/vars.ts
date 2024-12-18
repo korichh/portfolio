@@ -13,8 +13,4 @@ export default {
   db_port: Number(process.env.DB_PORT) || 3306,
   telegram_bot_token: process.env.TELEGRAM_BOT_TOKEN || "",
   telegram_chat_id: process.env.TELEGRAM_CHAT_ID || "",
-  account_id: process.env.ACCOUNT_ID || "",
-  access_key_id: process.env.ACCESS_KEY_ID || "",
-  secret_access_key: process.env.SECRET_ACCESS_KEY || "",
-  bucket_name: process.env.BUCKET_NAME || "",
 };
