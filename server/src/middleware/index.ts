@@ -7,12 +7,13 @@ import ejs from "ejs"
 import rateLimit from "express-rate-limit"
 import sequelize from "../config/connection"
 import * as include from "../include"
+import vars from "../config/vars"
 
 const SequelizeStore = connectSessionSequelize(session.Store)
-const IN_PROD = process.env.NODE_ENV === "prod"
+const IN_PROD = vars.node_env === "prod"
 const SESSION_OPTIONS = {
-    SESSION_NAME: process.env.SESSION_NAME || "SID",
-    SESSION_SECRET: process.env.SESSION_SECRET || "",
+    SESSION_NAME: vars.session_name,
+    SESSION_SECRET: vars.session_secret,
 }
 
 export const setSession = session({
