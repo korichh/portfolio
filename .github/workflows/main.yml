@@ -40,7 +40,7 @@ jobs:
             echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
             echo "Running docker compose..."
-            docker compose --env-file ./.env up --build -d
+            docker compose --env-file ./.env up --build node -d
 
             echo "Removing unused images..."
             docker image prune -fa
